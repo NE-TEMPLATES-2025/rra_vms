@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
@@ -60,11 +59,12 @@ public class JwtService {
     public String extractUsername(String token){
         return extractClaim(token,Claims::getSubject);
     }
+
     public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails){
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setPayload(userDetails.getUsername())
+                .setSubject(userDetails.getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + 2 * 24 * 60 * 60 *1000))
                 .signWith(getSecretKey(), SignatureAlgorithm.HS256)
                 .compact();

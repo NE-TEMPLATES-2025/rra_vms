@@ -1,6 +1,7 @@
 package com.rra.vms.exceptions.handlers;
 
 
+import com.rra.vms.exceptions.BadRequestException;
 import com.rra.vms.exceptions.ResourceNotFoundException;
 import com.rra.vms.exceptions.UserNotFoundException;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public void handleUserNotFoundException(Exception e){
+
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public void handleBadRequestException(Exception e){
 
     }
 }
