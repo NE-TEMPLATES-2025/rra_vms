@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Data
 @Table(name = "transfers")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

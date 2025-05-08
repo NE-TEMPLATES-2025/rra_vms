@@ -10,4 +10,5 @@ public interface IVehicleService {
     Vehicle createVehicle(CreateVehicleRequest createVehicleRequest);
     Vehicle getVehicle(UUID vehicleId);
     Page<Vehicle> getAllVehicles(int size, int page);
+    Page<Vehicle> searchVehicles(String searchQuery,int size,int page);
 }

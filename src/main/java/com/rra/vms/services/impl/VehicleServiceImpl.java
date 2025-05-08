@@ -63,4 +63,10 @@ public class VehicleServiceImpl implements IVehicleService {
         Pageable pageable = PageRequest.of(page, size);
         return vehicleRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<Vehicle> searchVehicles(String searchQuery, int size, int page) {
+        Pageable pageable = PageRequest.of(page, size);
+        return vehicleRepository.search(searchQuery,pageable);
+    }
 }

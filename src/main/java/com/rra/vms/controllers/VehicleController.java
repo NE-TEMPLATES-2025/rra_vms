@@ -56,4 +56,24 @@ public class VehicleController {
         Vehicle response=vehicleService.getVehicle(vehicleId);
         return new ApiResponse<>("Vehicle retrieved Successfully", HttpStatus.OK,response).toResponseEntity();
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<PagedResponse<Vehicle>>> searchVehicles(
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "0") int pageNumber,
+            @RequestParam(name = "q") String query
+
+    ) {
+        Page<Vehicle> page= vehicleService.searchVehicles(query,size,pageNumber);
+        PagedResponse<Vehicle> response = new PagedResponse<>(
+                page.getContent(),
+                page.getNumber(),
+                page.getSize(),
+                page.getTotalElements(),
+                page.getTotalPages(),
+                page.isLast()
+        );
+        return new ApiResponse<>("Vehicle list retrieved successfully", HttpStatus.OK, response).toResponseEntity();
+    }
 }
