@@ -5,7 +5,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,4 +48,14 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
      filterChain.doFilter(request,response);
     }
+
+
+    @Override
+    public boolean shouldNotFilter(HttpServletRequest request) {
+        String path= request.getRequestURI();
+        return  path.equals("/api/v1/user/create") || path.startsWith("/api/v1/auth") || path.startsWith("/swagger-ui") || path.startsWith("/api-docs");
+
+    }
+
+
 }

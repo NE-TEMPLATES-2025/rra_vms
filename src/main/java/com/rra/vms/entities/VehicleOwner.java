@@ -29,7 +29,7 @@ public class VehicleOwner {
     private String lastName;
 
     @Column(name ="national_id",nullable = false)
-    private Integer nationalId;
+    private Long nationalId;
 
     @Column(nullable = false,name = "phone_number")
     private String phoneNumber;
