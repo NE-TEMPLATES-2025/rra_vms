@@ -56,4 +56,24 @@ public class VehicleOwnerController {
         VehicleOwner response= vehicleOwnerServiceImpl.getVehicleOwnerById(vehicleOwnerId);
         return  new ApiResponse<>("Vehicle Owner found", HttpStatus.OK,response).toResponseEntity();
     }
+
+    @GetMapping("/search")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ApiResponse<PagedResponse<VehicleOwner>>>  searchVehicleOwner(
+            @RequestParam(name = "q") String q ,
+            @RequestParam(name = "size",defaultValue = "10") int size,
+            @RequestParam(name = "page",defaultValue = "0") int pageNumber
+    ){
+        Page<VehicleOwner> page=vehicleOwnerService.searchVehicleOwners(q,size,pageNumber);
+        PagedResponse<VehicleOwner> response = new PagedResponse<>(
+                page.getContent(),
+                page.getNumber(),
+                page.getSize(),
+                page.getTotalElements(),
+                page.getTotalPages(),
+                page.isLast()
+        );
+        return new ApiResponse<>("Vehicle Owner list", HttpStatus.OK,response).toResponseEntity();
+
+    }
 }

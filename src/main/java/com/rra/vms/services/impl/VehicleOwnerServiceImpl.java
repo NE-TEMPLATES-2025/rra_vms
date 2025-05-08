@@ -45,4 +45,12 @@ public class VehicleOwnerServiceImpl implements IVehicleOwnerService {
         return user.get();
     }
 
+    @Override
+    public Page<VehicleOwner> searchVehicleOwners(String searchQuery, int size, int page) {
+        Pageable pageable = PageRequest.of(page,size);
+        return vehicleOwnerRepository.search(pageable,searchQuery);
+
+    }
+
+
 }

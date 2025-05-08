@@ -1,11 +1,13 @@
 package com.rra.vms.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -38,4 +40,9 @@ public class Vehicle {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "plate_number_id",referencedColumnName = "id")
     private PlateNumber plateNumber;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_owner_id",nullable = false)
+    @JsonBackReference
+    private VehicleOwner vehicleOwner;
 }

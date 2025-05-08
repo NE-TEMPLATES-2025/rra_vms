@@ -42,6 +42,7 @@ public class PlateNumber {
 
 
     @OneToOne(mappedBy = "plateNumber",cascade = CascadeType.ALL)
+    @JsonIgnore
     private Vehicle vehicle;
 
 }

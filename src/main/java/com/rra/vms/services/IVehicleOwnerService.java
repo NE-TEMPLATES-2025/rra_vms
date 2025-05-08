@@ -12,4 +12,6 @@ public interface IVehicleOwnerService {
 
     Page<VehicleOwner> getAllVehicleOwners(int size, int page);
     VehicleOwner getVehicleOwnerById(UUID vehicleOwnerId);
+
+    Page<VehicleOwner> searchVehicleOwners(String searchQuery,int size,int page);
 }

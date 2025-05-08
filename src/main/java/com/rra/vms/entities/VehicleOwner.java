@@ -42,4 +42,8 @@ public class VehicleOwner {
     @JsonManagedReference
     private List<PlateNumber> plateNumbers;
 
+    @OneToMany(mappedBy = "vehicleOwner",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Vehicle> vehicles;
+
 }

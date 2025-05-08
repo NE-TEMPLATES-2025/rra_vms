@@ -46,6 +46,7 @@ public class PlateNumberController {
                 page.getTotalPages(),
                 page.isLast()
         );
+
         return new ApiResponse<>("Plate number list retrieved successfully", HttpStatus.OK, response).toResponseEntity();
     }
 
