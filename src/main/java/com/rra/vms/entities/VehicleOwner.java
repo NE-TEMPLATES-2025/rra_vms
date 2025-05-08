@@ -1,6 +1,7 @@
 package com.rra.vms.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,6 +39,7 @@ public class VehicleOwner {
     private Address address;
 
     @OneToMany(mappedBy = "owner",cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<PlateNumber> plateNumbers;
 
 }

@@ -1,6 +1,8 @@
 package com.rra.vms.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rra.vms.enums.EPlateAvailability;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,11 +33,11 @@ public class PlateNumber {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "plate_availability")
-    private EPlateAvailability availability;
-
+    private EPlateAvailability availability = EPlateAvailability.IN_USE;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_owner_id",nullable = false)
+    @JsonBackReference
     private VehicleOwner owner;
 
 

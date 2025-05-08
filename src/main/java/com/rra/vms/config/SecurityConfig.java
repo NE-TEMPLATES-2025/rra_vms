@@ -32,7 +32,7 @@ public class SecurityConfig {
                 AbstractHttpConfigurer::disable
         ).authorizeHttpRequests(
                 req ->
-                        req.requestMatchers("/api/v1/vehicle-owners/**")
+                        req.requestMatchers("/api/v1/vehicle-owners/**","/api/v1/plate-number/**")
                                 .authenticated()
                                 .anyRequest()
                                 .permitAll()

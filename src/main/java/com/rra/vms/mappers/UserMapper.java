@@ -8,9 +8,10 @@ import com.rra.vms.repository.UserRepository;
 import com.rra.vms.request.RegisterUserRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class UserMapper {
 private final PasswordEncoder passwordEncoder;
